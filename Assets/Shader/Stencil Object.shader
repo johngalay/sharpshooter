@@ -6,8 +6,14 @@
 		_Metallic ("Metallic", Range(0,1)) = 0.0
 	}
 	SubShader {
-		Tags { "RenderType"="Opaque" }
+		//Tags { "RenderType"="Opaque" }
+		Tags { "RenderType"="Transparent" "Queue" = "Transparent"}
 		LOD 200
+
+		Stencil {
+			Ref 1
+			Comp equal 
+		}
 		
 		CGPROGRAM
 		// Physically based Standard lighting model, and enable shadows on all light types

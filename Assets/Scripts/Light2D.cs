@@ -16,6 +16,9 @@ public class Light2D : MonoBehaviour {
 	public float meshResolution;
 	public int edgeResolveIterations;
 	public float edgeDstThreshold;
+	
+	public float maskCutawayDst = 0.15f;
+
 	public MeshFilter viewMeshFilter;
 	private Mesh viewMesh;
 
@@ -88,7 +91,7 @@ public class Light2D : MonoBehaviour {
 		
 		vertices[0] = Vector3.zero;
 		for(int i = 0; i < vertexCount - 1; i++) {
-			vertices[i + 1] = transform.InverseTransformPoint(viewPoints[i]);
+			vertices[i + 1] = transform.InverseTransformPoint(viewPoints[i] + new Vector3(0,0,0) * maskCutawayDst);
 
 			if(i < vertexCount - 2) {
 			triangles[i * 3] = 0;

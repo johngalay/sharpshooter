@@ -6,9 +6,16 @@
 		_Metallic ("Metallic", Range(0,1)) = 0.0
 	}
 	SubShader {
-		Tags { "RenderType"="Opaque" }
+		Tags { "RenderType"="Opaque" "Queue"="Geometry-100"} // rendered before other geometry.
+		ColorMask 0
+		ZWrite off
 		LOD 200
 		
+		Stencil {
+			Ref 1
+			Pass replace
+		}
+
 		CGPROGRAM
 		// Physically based Standard lighting model, and enable shadows on all light types
 		#pragma surface surf Standard fullforwardshadows
